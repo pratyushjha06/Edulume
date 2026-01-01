@@ -135,7 +135,8 @@ export const setupSocketHandlers = (io) => {
     // Handle disconnect
     socket.on("disconnect", (reason) => {
       console.log(
-        `❌ User ${socket.user.username} disconnected. Reason: ${reason}`
+        `❌ User ${socket.user.username} disconnected. Reason:`,
+        reason
       );
       console.log(
         `🏠 Socket ${socket.id} was in rooms:`,

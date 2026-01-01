@@ -65,7 +65,7 @@ export const getCache = async (key) => {
     const data = await redisClient.get(key);
     return data ? JSON.parse(data) : null;
   } catch (error) {
-    console.error(`❌ Redis GET error for key ${key}:`, error.message);
+    console.error("❌ Redis GET error for key:", key, "Error:", error.message);
     return null;
   }
 };
@@ -79,7 +79,7 @@ export const setCache = async (key, value, expirationInSeconds = 300) => {
     await redisClient.setEx(key, expirationInSeconds, JSON.stringify(value));
     return true;
   } catch (error) {
-    console.error(`❌ Redis SET error for key ${key}:`, error.message);
+    console.error("❌ Redis SET error for key:", key, "Error:", error.message);
     return false;
   }
 };
@@ -93,7 +93,7 @@ export const deleteCache = async (key) => {
     await redisClient.del(key);
     return true;
   } catch (error) {
-    console.error(`❌ Redis DELETE error for key ${key}:`, error.message);
+    console.error("❌ Redis DELETE error for key:", key, "Error:", error.message);
     return false;
   }
 };
@@ -111,7 +111,9 @@ export const deleteCachePattern = async (pattern) => {
     return true;
   } catch (error) {
     console.error(
-      `❌ Redis DELETE PATTERN error for ${pattern}:`,
+      "❌ Redis DELETE PATTERN error for pattern:",
+      pattern,
+      "Error:",
       error.message
     );
     return false;
